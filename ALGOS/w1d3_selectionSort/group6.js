@@ -19,4 +19,30 @@
 */
 const myArr = [3,2,9,5,1,4,8]
 
-function selectionSort(arr){ }
+function selectionSort(arr){
+    let minIndex = 0;
+    let currIndex = 0;
+    // currIndex goes 1 by 1 until it reaches the end
+    while( currIndex < arr.length){
+        // standard for Loop
+        for(let i = currIndex; i < arr.length; i++) {
+            // conditional check to see if our current index value is less than value of the minimum index
+            if(arr[i] < arr[minIndex]){
+                // if true, minIndex changes to currently tested index (i)
+                minIndex = i;
+            }
+        }
+        // Through destructuring we're swaping both values at the same time
+        [arr[currIndex], arr[minIndex]] = [arr[minIndex], arr[currIndex]];
+        // Moves to the next position so we dont repeate our previously check position
+        currIndex += 1;
+        // We're resetting our current index to minIndex
+        minIndex = currIndex;
+    }
+    // return the newly assorted array
+    return arr;
+}
+console.log(selectionSort(myArr));
+console.log(selectionSort(numsOrdered));
+console.log(selectionSort(numsRandomOrder));
+console.log(selectionSort(numsReversed));

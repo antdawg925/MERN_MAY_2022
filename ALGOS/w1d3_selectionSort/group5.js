@@ -17,6 +17,24 @@
         you run selection sort for 10 iterations only to display the first 10
         sorted items...
 */
-const myArr = [3,2,9,5,1,4,8]
+const myArr = [3, 2, 9, 5, 1, 4, 8]
 
-function selectionSort(arr){ }
+function selectionSort(arr) { // BASIC CONCEPT === selection minimum index and comparing it to the outer for loop ===
+    let minIx = 0; // create variable track are smallest number in array 
+    let temp = 0; // used for swapping 
+
+    for (let i = 0; i < arr.length - 1; i++) { // this is used to find the smallest number in the array
+        minIx = i; //setting minIx and i to the same. 
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIx]) { // the comparison between j and minIx
+                minIx = j;
+            }
+        }
+        temp = arr[i]; // SWAP A -> B 
+        arr[i] = arr[minIx]; // SWAP B -> C 
+        arr[minIx] = temp; // SWAP C -> A 
+    }
+    return arr; // return the array 
+}
+
+console.log(selectionSort(myArr));

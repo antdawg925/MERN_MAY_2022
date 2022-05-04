@@ -18,5 +18,53 @@
         sorted items...
 */
 const myArr = [3,2,9,5,1,4,8]
+const arrTest = [4, 5, 1, 3, 6, 7, 10, 2, 8, 9]
 
-function selectionSort(arr){ }
+function selectionSort(arr){ 
+    for (let i=0; i<arr.length; i++){
+        // console.log(arr[i]);
+        let minIdx = i
+        for (let j=i+1; j<arr.length;j++){
+            // console.log(arr[j]);
+            
+            // console.log("starting" + minVal);
+            if (arr[j]<arr[minIdx]){
+               minIdx = j    
+            }
+        }
+        // after inner for loop
+        // j has completely went through all values
+        // swap with current index at i
+        temp = arr[i]
+        arr[i] = arr[minIdx]
+        arr[minIdx] = temp
+
+    }
+    return arr
+}
+
+function selectionSort(arr){
+    for(let i = 0; i < arr.length; i++) { // we need to loop through the array
+        let minIdx = i; // we want to find the smallest element, but we're more concerned with its 
+        // INDEX than its value. So we'll keep tack of a minIdx, and set it to i at the beginning
+        // of each iteration
+
+        for(let j = i+1;  j < arr.length; j++) { // we'll loop through the remaining values
+            if(arr[j] < arr[minIdx]){ // if we find a number that's less than our current minimum
+                minIdx = j; // set that number's index as minIdx
+            }
+        }
+
+        if(arr[minIdx] !== arr[i]){ // if, after checking everything, we found a new minimum
+            const temp = arr[i]; // swap the new minimum
+            arr[i] = arr[minIdx]; // with the value at i
+            arr[minIdx] = temp; 
+        }
+        // and then bring it back to the top and run it again!
+    }
+
+    return arr; // by now, everything is sorted!
+ }
+
+console.log(selectionSort(myArr));
+console.log(selectionSort(arrTest));

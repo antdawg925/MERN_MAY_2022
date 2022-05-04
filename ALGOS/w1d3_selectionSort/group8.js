@@ -19,4 +19,56 @@
 */
 const myArr = [3,2,9,5,1,4,8]
 
-function selectionSort(arr){ }
+function selectionSort(arr){
+    // declare min value
+    let min;
+    // first loop to loop through the index
+    for (let i =0; i<arr.length-1; i++){
+        //reset min to i in array
+        min = i;
+        // loop through array at index of i+1 so we can compare to i
+        for(let j=i+1; j<arr.length; j++){
+           //compare the index j and index min to determine the min
+           if (arr[j] < arr[min]){
+               // reset index j to min
+               min = j;
+            }
+        }
+        //compare the value of index min with the value of index i
+        if (arr[min] < arr[i]){
+            //swap
+            let temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+    }
+    return arr;
+}
+
+console.log(selectionSort(myArr));
+    // declare min value
+    let min;
+    // first loop to loop through the index
+    for (let i =0; i<arr.length-1; i++){
+        //reset min to i in array
+        min = i;
+        // loop through array at index of i+1 so we can compare to i
+        for(let j=i+1; j<arr.length; j++){
+           //compare the index j and index min to determine the min
+           if (arr[j] < arr[min]){
+               // reset index j to min
+               min = j;
+            }
+        }
+        //compare the value of index min with the value of index i
+        if (arr[min] < arr[i]){
+            //swap
+            let temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+    }
+    return arr;
+}
+
+console.log(selectionSort(myArr));

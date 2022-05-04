@@ -19,4 +19,23 @@
 */
 const myArr = [3,2,9,5,1,4,8]
 
-function selectionSort(arr){ }
+function selectionSort(arr){ 
+    // Outer loop to iterate through the entire array
+    for(let i = 0; i < arr.length; i++){
+        let minInx = i;
+        // Inner loop to find the next minimum value
+        for(let j = i+1; j < arr.length; j++){
+            if (arr[j] < arr[minInx]){
+                minInx = j;
+            }
+        }
+        // Swap the smallest value to i, the start of non-sorted items 
+        let temp = arr[minInx];
+        arr[minInx] = arr[i];
+        arr[i] = temp;
+        // [numArr[i], numArr[minIndex]] = [numArr[minIndex], numArr[i]]; Fancy one-line swap
+    }
+    return arr;
+}
+
+console.log(selectionSort(myArr))
