@@ -30,7 +30,31 @@
     6. move to next item and repeat
 */
 
-function insertionSort(arr) { }
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+      let temp = arr[i];
+      arr[i] = arr[i - 1];
+  
+      for (let j = i; j >= 0; j--) {
+        if (temp > arr[j]) {
+          arr[j] = temp;
+          break;
+        } else if (j == 0) {
+          arr[j] = temp;
+        } else {
+          console.log(
+            `Value of j (${
+              arr[j]
+            }) is greater than temp (${temp}) | Setting j to ${
+              arr[j - 1]
+            }\n${arr}`
+          );
+          arr[j] = arr[j - 1];
+        }
+      }
+    }
+    return arr;
+  }
 
 insertionSort([3, 5, 2, 1, 0])
 insertionSort([3, 0])

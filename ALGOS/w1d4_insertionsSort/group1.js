@@ -30,7 +30,18 @@
     6. move to next item and repeat
 */
 
-function insertionSort(arr) { }
+function insertionSort(arr) {                         
+    for(let right = 1; right < arr.length; right++) { // moves to the right
+        let temp = arr[right];                        // temp var holds the right variable
+        let left = right - 1;                         // left will start on the left possition of the right 
+        while(left >= 0 && temp < arr[left]) {        // while loop works to the left  and continues until it reaches 0 index or temp value less than array at left
+            arr[left + 1] = arr[left];                // copies value over 1 index
+            left--;                                   // decrements left
+        }
+        arr[left + 1] = temp;                         // sets temp to new location at left + 1
+    }
+    return arr;                                       // returns newly sorted array
+}
 
 insertionSort([3, 5, 2, 1, 0])
 insertionSort([3, 0])
