@@ -21,14 +21,15 @@ class ClickComponent extends Component {
         // console.log(this.state.num);
     }
 
+    // happyBirthday = () => {
     happyBirthday() {
        console.log(this.state.person);
     //    what problem does this cause?
-        this.setState({
-            person: {
-                age: 123
-            }
-        })
+        // this.setState({
+        //     person: {
+        //         age: 123
+        //     }
+        // })
     }
 
     render() {
