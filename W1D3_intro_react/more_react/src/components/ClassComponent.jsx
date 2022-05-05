@@ -21,15 +21,17 @@ class ClickComponent extends Component {
         // console.log(this.state.num);
     }
 
-    // happyBirthday = () => {
-    happyBirthday() {
-       console.log(this.state.person);
-    //    what problem does this cause?
-        // this.setState({
-        //     person: {
-        //         age: 123
-        //     }
-        // })
+    // happyBirthday() {
+    happyBirthday = () => {
+        console.log("clicked");
+        console.log(this.state.person);
+        //    what problem does this cause?
+        this.setState({
+            person: {
+                ...this.state.person,
+                age: this.state.person.age + 1
+            }
+        })
     }
 
     render() {
@@ -39,7 +41,7 @@ class ClickComponent extends Component {
                 {JSON.stringify(this.state)}
                 <hr />
                 {JSON.stringify(this.state.person)}
-
+    
                 <p>
                     {/* {JSON.stringify(this.props)} */}
                     num: {this.state.num}
