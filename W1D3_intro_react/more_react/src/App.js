@@ -16,7 +16,6 @@ function App() {
       </p>
       {/* hello {person.name} */}
       <ClickComponent person={person} num={10}/>
-      <ClickComponent person={person} num={10}/>
     </div>
   );
 }

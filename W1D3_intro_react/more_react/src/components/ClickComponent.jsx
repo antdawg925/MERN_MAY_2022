@@ -9,7 +9,7 @@ class ClickComponent extends Component {
             // num: 33,
             num: this.props.num,
             food: "🍕",
-            person: props.person
+            person: this.props.person
         }
     }
 
@@ -22,10 +22,13 @@ class ClickComponent extends Component {
     }
 
     happyBirthday() {
-        console.log("hi there!@");
-        // this.setState({
-        //     person: this.state.person.age + 1 
-        // })
+       console.log(this.state.person);
+    //    what problem does this cause?
+        this.setState({
+            person: {
+                age: 123
+            }
+        })
     }
 
     render() {
@@ -34,6 +37,8 @@ class ClickComponent extends Component {
                 <legend>ClickComponent.jsx</legend>
                 {JSON.stringify(this.state)}
                 <hr />
+                {JSON.stringify(this.state.person)}
+
                 <p>
                     {/* {JSON.stringify(this.props)} */}
                     num: {this.state.num}
@@ -44,7 +49,7 @@ class ClickComponent extends Component {
 
                 <h2>Person Object</h2>
                 {JSON.stringify(this.state.person)}
-                <button onClick={this.happyBirthday}>Happy birthday 🎉</button>
+                <button onClick={() => this.happyBirthday()}>Happy birthday 🎉</button>
 
             </fieldset>
         )
