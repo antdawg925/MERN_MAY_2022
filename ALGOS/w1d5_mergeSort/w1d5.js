@@ -26,7 +26,28 @@ var testArr = [88, 22, 44, 12, 99, 111, 9, 15, 49];
 
 // main recursive function that will be passed in mergeSortedArrays(left, right)
 // create a new sorted arr based on the given arr being recursively split and merged.
-function mergeSort(arr) { }
+function mergeSort(arr) {
+  // recursive function
+  // (recursive) split arrays down to 1 element
+  // then call the helper function to merge them back
+    //  mergeSortedArrays(leftArr, rightArr)
+    
+    // return arrays of single values
+    if (arr.length < 2) {
+        return arr;
+    }
+
+    // get the middle index, floor it to prevent floats
+    const middle = Math.floor(arr.length / 2);
+    const left = arr.slice(0, middle);
+    const right = arr.slice(middle);
+
+    // mergeSortedArray called on the result of mergeSort left and right
+    //                              v
+    //                              88                22
+    return mergeSortedArrays(mergeSort(left), mergeSort(right)); // A function call is equal to what that function returns
+}
+
 
 
 // helper function
@@ -41,7 +62,30 @@ var mergeArrB = [11,66];
 var arrLeft = [22];
 var arrRight = [11,33];
 //                      arrLeft, arrRight
-function mergeSortedArrays(arr1, arr2) { }
+function mergeSortedArrays(arr1, arr2) {
+  // setup
+  let sortedArr = [];
+  let leftIdx = 0;
+  let rightIdx = 0;
+
+  // check lengths of arrays
+  // push to sorted array
+  // return the array
+  // -----------------------
+    let sort = [];
+
+    while (arr1.length && arr2.length) {
+         if (arr1[0] < arr2[0]) {
+            // shift pops from the front, not ideal.
+            sort.push(arr1.shift());
+        } else {
+            sort.push(arr2.shift());
+        }
+    }
+
+    // takes remainders and squashes them together in cases with one array
+    return sort.concat(arr1.slice().concat(arr2.slice()));
+}
 
 // //steps:
 //     1. create a merge function to merge two already sorted arrays into a single sorted array
@@ -69,3 +113,105 @@ function mergeSortedArrays(arr1, arr2) { }
 // var l = arr.slice(0, m);
 // var r = arr.slice(m, arr.length);
 
+
+
+// ---------- alternative --------------
+/**
+ * Merges two already sorted arrays into a new sorted array.
+ * - Time: O(n + m) -> O(n) linear n = left.length, m = right.length.
+ *    Every item from each array is visited once.
+ * - Space: O(n + m) -> O(n) linear.
+ * @param {Array<number>} left
+ * @param {Array<number>} right
+ * @returns {Array<number>} A new sorted array containing all the elements of
+ *    both given halves.
+ */
+ function merge(left, right) {
+    let result = [];
+    let indexLeft = 0;
+    let indexRight = 0;
+  
+    while (indexLeft < left.length && indexRight < right.length) {
+      if (left[indexLeft] < right[indexRight]) {
+        result.push(left[indexLeft]);
+        indexLeft++;
+      } else {
+        result.push(right[indexRight]);
+        indexRight++;
+      }
+    }
+  
+    // in case one of the arrays has remaining items due to unequal lengths, all of those can be added
+    while (indexLeft < left.length) {
+      result.push(left[indexLeft]);
+      indexLeft++;
+    }
+  
+    while (indexRight < right.length) {
+      result.push(right[indexRight]);
+      indexRight++;
+    }
+  
+    return result;
+  // one liner version of adding in any left over items
+  // return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight));
+}
+
+/**
+ * Creates a new sorted array based on the given nums being recursively split
+ * and merged.
+ * Best: O(n log(n)) linearithmic.
+ * Avg: O(n log(n)) linearithmic.
+ * Worst: O(n log(n)) linearithmic.
+ * @param {Array<number>} nums
+ * @returns {Array<number>} A New sorted array.
+ */
+ function mergeSort(nums) {
+    if (nums.length === 1) {
+      // return once we hit an array with a single item
+      return nums;
+    }
+  
+    const middleIdx = Math.floor(nums.length / 2);
+    const left = nums.slice(0, middleIdx);
+    const right = nums.slice(middleIdx);
+    const sortedLeft = mergeSort(left);
+    const sortedRight = mergeSort(right);
+    return merge(sortedLeft, sortedRight);
+  }
+
+// ----------------------------
+
+// recursion
+// a function call itself 
+
+// function a() {
+//     a();
+// }
+
+// a();
+
+
+// 5!
+// 5*4*3*2*1
+
+// 4!
+// 4*3*2*1
+
+// 3!
+// 3*2*1
+
+// function factorial(num) {
+//     // 1. create a case base - BREAK POINT / EXIT ASAP
+//     if (num === 1) {
+//         return 1
+//     }
+
+//     // 2. logic
+//     // num = num -1;
+
+//     // 3. RECURSION - call the function again
+//     return num * factorial(num - 1)
+// }
+
+// factorial(4);

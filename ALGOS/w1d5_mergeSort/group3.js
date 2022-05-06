@@ -41,7 +41,22 @@ var mergeArrB = [11,66];
 var arrLeft = [22];
 var arrRight = [11,33];
 //                      arrLeft, arrRight
-function mergeSortedArrays(arr1, arr2) { }
+function mergeSortedArrays(arr1, arr2) {
+    let arr1Pointer = 0,
+      arr2Pointer = 0,
+      output = [];
+  
+    while (output.length != arr1.length + arr2.length) {
+      if (arr1Pointer == arr1.length || arr1[arr1Pointer] > arr2[arr2Pointer]) {
+        output.push(arr2[arr2Pointer]);
+        arr2Pointer++;
+      } else {
+        output.push(arr1[arr1Pointer]);
+        arr1Pointer++;
+      }
+    }
+    return output;
+  }
 
 // //steps:
 //     1. create a merge function to merge two already sorted arrays into a single sorted array
