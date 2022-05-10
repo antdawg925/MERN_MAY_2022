@@ -30,5 +30,30 @@ const expected3 = [];
  *    sorted and contains only the shared values between the two arrays
  *    deduped.
  */
-function orderedIntersection(sortedA, sortedB) { }
 
+ function orderedIntersection(sortedA, sortedB) {
+  let result = [], arr1p = 0, arr2p = 0;
+  // While both pointers aren't equal to the length of that array
+  while (arr1p!=sortedA.length && arr2p!=sortedB.length){
+      // If the value of each pointer in the arrays is equal...
+      if (sortedA[arr1p] === sortedB[arr2p]){
+          // If the value isn't already in the output, add it
+          if(sortedA[arr1p] !== result[result.length-1]){
+              result.push(sortedA[arr1p]);             
+          }
+          // Regardless, increment both pointers
+          arr1p++, arr2p++;
+      }
+      // If the second value of the pointer is less than the first value then increment the second pointer
+      else if(sortedA[arr1p] > sortedB[arr2p]){
+          arr2p++;
+      }
+      // Otherwise increment the first pointer
+      else{
+          arr1p++;
+      }
+
+  }
+  // Give back the fruits of our labour
+  return result;
+}

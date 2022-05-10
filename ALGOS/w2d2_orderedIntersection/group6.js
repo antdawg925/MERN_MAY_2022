@@ -1,8 +1,8 @@
 /* 
-  Efficiently combine two already sorted multiset arrays 
-  into an array containing the sorted set intersection of the two.
-  Output: only the shared values between the two arrays (deduped).
-  Venn Diagram Visualization (bottom) https://i.ytimg.com/vi/sdflTUW6gHo/maxresdefault.jpg
+Efficiently combine two already sorted multiset arrays 
+into an array containing the sorted set intersection of the two.
+Output: only the shared values between the two arrays (deduped).
+Venn Diagram Visualization (bottom) https://i.ytimg.com/vi/sdflTUW6gHo/maxresdefault.jpg
 */
 
 const arrA1 = [0, 1, 2, 2, 2, 7];
@@ -30,5 +30,28 @@ const expected3 = [];
  *    sorted and contains only the shared values between the two arrays
  *    deduped.
  */
-function orderedIntersection(sortedA, sortedB) { }
-
+function orderedIntersection(sortedA, sortedB) {
+    let newArr = [];
+    let i = 0;
+    let j = 0;
+    // Setting paramaters for how long the loop will go on
+    while( i < sortedA.length && j < sortedB.length){
+        if( sortedA[i] === sortedB[j]){
+            if(newArr[newArr.length-1] !== sortedA[i] ){
+                newArr.push(sortedA[i]);
+            }
+            i++;
+            j++;
+        }
+        else if (sortedA[i]< sortedB[j]){
+            i++;
+        }
+        else if (sortedA[i]> sortedB[j]){
+            j++;
+        }
+    }
+    return newArr;
+}
+console.log(orderedIntersection(arrA1,arrB1));
+console.log(orderedIntersection(arrA2,arrB2));
+console.log(orderedIntersection(arrA3,arrB3));
