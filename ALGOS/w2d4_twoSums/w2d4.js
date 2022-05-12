@@ -28,7 +28,24 @@ target: 6
 output: [0,1]
 */
 
-function twoSums(arr, target) {}
+function twoSums(arr, target) {
+    let idx1 = 0;
+    let idx2 = 1;
+    const output = [];
+    while (idx1 !== arr.length) { // O(n^2) 👀
+        if (arr[idx1] + arr[idx2] === target) {
+            output.push(idx1);
+            output.push(idx2);
+            return output;
+        } else if (idx2 === arr.length) {
+            idx1++;            
+            idx2 = idx1 + 1;   
+        } else {
+            idx2++;
+        }
+    }
+    return output;
+}
 
 console.log(twoSums([2, 11, 7, 15], 9)); // [0,2]
 console.log(twoSums([3, 2, 4], 6)); // [1,2]

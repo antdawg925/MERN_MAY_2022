@@ -26,9 +26,28 @@
 // given: [3,3]
 // target: 6
 // output: [0,1]
- 
-function twoSums(arr, target) {}
 
-console.log(twoSums([2, 11, 7, 15], 9)); // [0,2]
-console.log(twoSums([3, 2, 4], 6)); // [1,2]
-console.log(twoSums([3, 3], 6)); // [0,1]
+    function twoSums(arr, target) {
+        const emptyArr = [];
+    
+        for (let i = 0; i < arr.length; i++){
+            // emptyArr.push(i);
+            for (let k = i+1; k< arr.length; k++){
+                if (arr[k] === target-arr[i]){
+                    emptyArr.push(i);
+                    emptyArr.push(k);
+                    
+                    return emptyArr;
+                }
+            }
+            // emptyArr.pop(i);
+        }
+        return emptyArr;
+    }
+    
+    
+    console.log(twoSums([2, 11, 7, 15], 9)); // [0,2]
+    console.log(twoSums([3, 2, 4], 6)); // [1,2]
+    console.log(twoSums([3, 3], 6)); // [0,1]
+
+
