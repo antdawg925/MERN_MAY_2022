@@ -38,4 +38,18 @@ const expected2 = 0;
 */
 
 
-function diagonalDifference(sqrMatrix) { }
+function diagonalDifference(sqrMatrix) {
+  let x1 = 0;
+  let x2 = 0;
+  let j = sqrMatrix.length-1;
+  for(let i=0; i<sqrMatrix.length; i++){
+      x1 += sqrMatrix[i][i];
+      x2 += sqrMatrix[i][j];
+      j--;
+  }
+
+  return Math.abs(x1-x2);
+}
+
+console.log(diagonalDifference(squareMatrix1));
+console.log(diagonalDifference(squareMatrix2));

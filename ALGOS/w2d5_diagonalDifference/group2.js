@@ -38,4 +38,14 @@ const expected2 = 0;
 */
 
 
-function diagonalDifference(sqrMatrix) { }
+function diagonalDifference(sqrMatrix) {
+  let left = 0;
+  let right = 0;
+  for(i = 0; i < sqrMatrix[0].length; i++){                   // For loop the length of the array
+      left += sqrMatrix[i][i];                                // Add values diagonaly from top left to bottom right
+      right += sqrMatrix[i][sqrMatrix[0].length - 1 - i];     // Top right to bottem left (oposite diagonal)
+  }
+  return Math.abs(left - right);                              // Returns the abosolute value (a postive value/ positive stays positive)
+}
+// console.log(diagonalDifference(squareMatrix1));
+console.log(diagonalDifference(squareMatrix2));
