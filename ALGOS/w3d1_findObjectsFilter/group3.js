@@ -30,9 +30,33 @@ const output2 = [
     { firstName: "Bob", lastName: "Smith", age: 27 },
 ];
 
-function findObjectsFilter(searchObj, items) {}
+const searchFor3 = {
+} //INTENTIONAL
+
+function findObjectsFilter(searchObj, items) {
+    // const keys = Object.keys(searchObj);  //keys is an array of keys
+    let output = [];
+    for (let item of items) {
+        let isValid = true;
+
+        for (let key in searchObj) {  //or for (let key of keys)^^^^
+
+            if (item.hasOwnProperty(key)) {
+                if (searchObj[key] === item[key]) {
+                    continue;
+                }
+            }
+            isValid = false;
+            break;
+        }
+        if (isValid) {
+            output.push(item);
+        }
+    }
+    return output;
+}
 
 
-console.log(findObjectsFilter(searchFor1, items));
-console.log(findObjectsFilter(searchFor1, items).toString() == output1.toString());
-console.log(findObjectsFilter(searchFor2, items));
+console.log(findObjectsFilter(searchFor3, items));
+
+// console.log(findObjectsFilter(searchFor2, items));

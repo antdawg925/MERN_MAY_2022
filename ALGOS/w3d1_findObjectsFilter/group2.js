@@ -1,4 +1,4 @@
-// findObjectsFilter(searchFor, itemsArr)
+// ------------------------------------------------Algorithm
 
 // given a 'search for' object with primitive values and a list of objects
 // return a new list of objects containing the same key value pairs as the search for
@@ -30,9 +30,28 @@ const output2 = [
     { firstName: "Bob", lastName: "Smith", age: 27 },
 ];
 
-function findObjectsFilter(searchObj, items) {}
+/* Pseucode
+    1. Loop through `items` and find object that have key
+    2. Check if objects have desired value assigned to that key
+    3. Push object into `output` array using `.push(item[idx])`
+    4. Return `output`
+*/
+
+
+function findObjectsFilter(searchObj, items) {
+    let output = [];
+    for(index in items) {
+        let obj = items[index];
+        if(obj.hasOwnProperty("firstName") && obj.hasOwnProperty("age")) {
+            if(obj["firstName"] == searchObj["firstName"] && obj["age"] == searchObj["age"]) {
+                output.push(obj);
+            }
+        }
+    }
+    return output; 
+}
 
 
 console.log(findObjectsFilter(searchFor1, items));
-console.log(findObjectsFilter(searchFor1, items).toString() == output1.toString());
-console.log(findObjectsFilter(searchFor2, items));
+// console.log(findObjectsFilter(searchFor1, items).toString() == output1.toString());
+// console.log(findObjectsFilter(searchFor2, items));

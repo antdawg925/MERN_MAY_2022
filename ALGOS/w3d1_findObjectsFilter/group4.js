@@ -30,7 +30,22 @@ const output2 = [
     { firstName: "Bob", lastName: "Smith", age: 27 },
 ];
 
-function findObjectsFilter(searchObj, items) {}
+function findObjectsFilter(searchObj, items) {
+    let output = []; // declaring output variable array
+    for (let obj of items) { // looping through all the values of array of dictionarys
+        let isMatch = true; // declaring a boolean value set to true
+        for (let key in searchObj){ // checking all keys in each obj
+            if (obj[key] !== searchObj[key]){ // checking if the values of the search obj and array obj match
+                isMatch = false; // if not a match, change boolean to false and break
+                break;
+            }
+        }
+        if (isMatch){ // if boolean is still true after checks, push obj to output array
+            output.push(obj);
+        }
+    }
+    return output; // return output
+}
 
 
 console.log(findObjectsFilter(searchFor1, items));
