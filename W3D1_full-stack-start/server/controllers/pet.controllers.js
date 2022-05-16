@@ -16,7 +16,7 @@ module.exports.findAllPets = (req, res) => {
             // res.json({ message: 'ok', allDaPets: allDaPets });
             res.json(allDaPets );
         })
-        .catch(err => res.json({ message: 'Something went wrong', error: err }))
+        .catch(err => res.json({ message: 'Something went wrong!!!!', error: err }))
 }
 
 // CREATE
@@ -25,7 +25,7 @@ module.exports.createNewPet = (req, res) => {
     console.log(req.body);
     Pet.create(req.body)
         .then(newlyCreatedPet => res.json({ pet: newlyCreatedPet }))
-        .catch(err => res.json({ message: 'Something went wrong', error: err }));
+        .catch(err => res.json({ message: '❌❌❌❌ Something went wrong', error: err }));
 }
 
 // READ ONE
