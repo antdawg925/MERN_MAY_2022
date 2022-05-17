@@ -4,10 +4,6 @@ Given an object,
 return an array of arrays of the object's key value pairs, where each key value pair is a 2 item array
 Do not include key value pairs from the given objects prototype (these are included by default when looping over an object's keys)
 */
-// pseudo code
-// 1. loop over obj
-// 2. get the keys and values from obj
-// 3. 
 
 const obj1 = {
   name: "Pizza",
@@ -29,9 +25,17 @@ const expected2 = [
   ["age", 13],
 ];
 
-// obj1.__proto__ = obj2;
+obj1.__proto__ = obj2;
 
-function entries(obj) { }
+function entries(obj) {
+  let output = [];
+  for(let key in obj){
+      if(obj.hasOwnProperty(key)){
+          output.push([key, obj[key]]);
+      }
+  }
+  return output;
+}
 
 console.log(entries(obj1));
 console.log(entries(obj2));
@@ -59,9 +63,25 @@ const insertData2 = {
 };
 const expectedB =
   "INSERT INTO users (first_name, last_name, age, is_admin) VALUES ('John', 'Doe', 30, false);";
-// Explanation: no quotes around the int or the bool, technically in SQL the bool would become a 0 or 1, but don't worry about that here.
 
-function insert(tableName, columnValuePairs) { }
+function insert(tableName, columnValuePairs) {
+  let keyData = [];
+  let valueData = [];
+  for(key in columnValuePairs){
+      keyData.push(key)
+      if(typeof(columnValuePairs[key]) === "string"){
+          valueData.push(`"${columnValuePairs[key]}"`)
+      } else {
+          valueData.push(columnValuePairs[key]);
+      }
+  }
+
+  return `"INSERT INTO ${tableName} (${keyData.join(", ")}) VALUES (${valueData.join(", ")});"`
+}
+
+console.log(insert(table, insertData1));
+console.log(insert(table, insertData2)); (' + keyData + ') VALUES (' + valueData + ');"'
+}
 
 console.log(insert(table, insertData1));
 console.log(insert(table, insertData2));

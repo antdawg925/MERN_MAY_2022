@@ -31,7 +31,15 @@ const expected2 = [
 
 // obj1.__proto__ = obj2;
 
-function entries(obj) { }
+function entries(obj) {
+  let resultArr = [];                         // Array to store the return
+  for(let key in obj){                        // Looping over keys in object
+      if( obj. hasOwnProperty(key)) {         // Checking if the original obj has the key, ensures that we dont have inherited key value pairs
+          resultArr.push(key,obj[key])        // Pushes the key and that value at that key into the resultArr
+      }
+  }
+  return resultArr
+}
 
 console.log(entries(obj1));
 console.log(entries(obj2));
