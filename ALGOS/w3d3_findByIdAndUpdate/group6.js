@@ -37,7 +37,35 @@ const students = [
     }
 ];
 
-function findByIdAndUpdate(id, updatedVals, collection) { }
+function findByIdAndUpdate(num, updatedVals, collection) {
+    // Create output object
+    let output={};
+    
+    for (i=0; i<collection.length; i++){
+        // Collection[i] is each object
+        if(collection[i].hasOwnProperty('id')){
+            // Make sure object has key 'id'
+            if(collection[i].id === num){
+                // if ids match
+                for (keys in collection[i]) {
+                    // cloning object
+                    output[keys]= collection[i][keys];
+                }
+                
+                for (keys in updatedVals){
+                    if(collection[i].hasOwnProperty(keys)){
+                    output[keys] = updatedVals[keys];
+                    }
+                }
+            }
+            
+        }
+    } if(Object.keys(output).length === 0){
+        return null;
+    } else {
+        return output;
+    }
+}
 
 console.log(findByIdAndUpdate(3, { redBeltStatus: true }, students));
 console.log(findByIdAndUpdate(1, { isLateToday: true, lateCount: 16, randomKey: "randomValue"  }, students));
@@ -64,4 +92,3 @@ console.log(findByIdAndUpdate(5, {}, students));
 
 // Input: 5, {}, students
 // Output: null
-
