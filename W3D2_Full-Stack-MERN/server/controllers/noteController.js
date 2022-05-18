@@ -28,7 +28,8 @@ module.exports = {
             })
             .catch(err => {
                 console.log("DB ERROR crating note");
-                return res.json(err)
+                // 🆘 return to the client a 400 status to trigger React's .catch()
+                return res.status(400).json(err)
             })
     },
 
