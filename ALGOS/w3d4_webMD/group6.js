@@ -75,7 +75,32 @@ Output: []
 // then loop through second array to see if the symptoms match the inputted symptoms
 // if they match add them into a new array at the end return array
 // edge case if no matches return null
-function webMD(ailments, meds) { }
+function webMD(ailments, meds) {
+    let symFreqObj = {};
+    for(let med of meds){
+        for(let ailment of ailments){
+            if(med.treatableSymptoms.includes(ailment)){
+                if(symFreqObj.hasOwnProperty(med.name)){
+                    symFreqObj[med.name] += 1;
+                } else {
+                    symFreqObj[med.name] = 1;
+                }
+            }
+        }
+    }
+    let results = [];
+    let maxSym = 0;
+    for(let name in symFreqObj){
+        if(symFreqObj[name] > maxSym){
+            results = [];
+            results.push(name);
+            maxSym = symFreqObj[name]
+        } else if (symFreqObj[name] == maxSym){
+            results.push(name);
+        }
+    }
+    return results
+}
 
 console.log(webMD(["pain"], medications));
 console.log(webMD(["pain", "inflammation", "depression"], medications));

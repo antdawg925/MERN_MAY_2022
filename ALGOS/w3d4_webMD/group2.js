@@ -25,10 +25,7 @@ const medications = [
     },
     {
         name: "Hericium erinaceus",
-        treatableSymptoms: [
-            "anxiety",
-            "cognitive decline",
-            "depression"],
+        treatableSymptoms: ["anxiety", "cognitive decline", "depression"],
     },
     {
         name: "Nicotinamide mononucleotide",
@@ -54,7 +51,6 @@ const medications = [
     },
 ];
 
-
 /*
 Input: ["pain"], medications
 Output: ["PainAssassinator", "Longvida Curcumin"]
@@ -75,9 +71,40 @@ Output: []
 // then loop through second array to see if the symptoms match the inputted symptoms
 // if they match add them into a new array at the end return array
 // edge case if no matches return null
-function webMD(ailments, meds) { }
+function webMD(ailments, meds) {
+    let output = [];
+    let count = 0;
+    for (let i = 0; i < meds.length; i++) {
+        // console.log(meds[i].treatableSymptoms)
+        for (let j = 0; j < meds[i].treatableSymptoms.length; j++) {
+            if (meds[i].treatableSymptoms[j] === ailments[j]) {
+                // console.log(meds[i].treatableSymptoms);
+                output.push(meds[i].name);
+                
+            }
+        }
+            
+        }
+        let mostFrequent = 1;
+        let m =0
+        let item;
+        for (let k=0; k<output.length; k++) {
+            for (let h=k; h<output.length; h++){
+                if (output[k] === output[h])
+                    m++;
+                    if (mostFrequent<m){
+                        mostFrequent=m;
+                        item = output[k];
+                    }
 
-console.log(webMD(["pain"], medications));
+                } m=0;
+            
+        
+        } return item;
+
+    }
+
+
+// console.log(webMD(["pain"], medications));
 console.log(webMD(["pain", "inflammation", "depression"], medications));
-console.log(webMD(["existential dread"], medications));
-
+// console.log(webMD(["existential dread"], medications));

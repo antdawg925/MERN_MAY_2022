@@ -75,7 +75,27 @@ Output: []
 // then loop through second array to see if the symptoms match the inputted symptoms
 // if they match add them into a new array at the end return array
 // edge case if no matches return null
-function webMD(ailments, meds) { }
+function webMD(ailments, meds) {
+    let possibleMedication ={};
+    for (let medicationObj of meds){
+        const frequency = medicationObj.treatableSymptoms.filter((symptom)=>ailments.includes(symptom)).length
+        if (frequency >0){
+            possibleMedication[medicationObj.name] = frequency
+        }
+    }
+    
+    let output = [];
+    let max = 0;
+    for (let med in possibleMedication){
+        if(possibleMedication[med] > max){
+            max = possibleMedication[med]
+            output = [med]
+        }else if(possibleMedication[med] === max){
+            output.push(med)
+        }
+    }
+    return output;
+}
 
 console.log(webMD(["pain"], medications));
 console.log(webMD(["pain", "inflammation", "depression"], medications));
